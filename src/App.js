@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
-import { withFormik, Field } from 'formik';
+import { withFormik, Field, ErrorMessage} from 'formik';
 
 function App(props) {
   const {
@@ -16,9 +16,9 @@ function App(props) {
           type="email"
           className="input"
         />
-        {errors.email && touched.email
-          && <div className="error">{errors.password}</div>
-        }
+        <ErrorMessage name="email" >
+          {message => <div className="error">{message}</div>}
+        </ErrorMessage>
       </div>
       <div className="row">
         Password:
@@ -27,9 +27,9 @@ function App(props) {
           type="password" 
           className="input" 
         />
-        {errors.password && touched.email
-          && <div className="error">{errors.password}</div>
-        }
+        <ErrorMessage name="password" >
+          {message => <div className="error">{message}</div>}
+        </ErrorMessage>
       </div>
       <div className="row">
         <button
